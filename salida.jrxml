@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="198"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -183,11 +183,6 @@ TEL: 3686813 – 3689219
 				</textElement>
 				<text><![CDATA[CIUDAD:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="77" y="22" width="213" height="24"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="351" y="46" width="193" height="32"/>
 				<textElement/>
@@ -486,6 +481,11 @@ NIT: 802012349-6
 			<line>
 				<reportElement x="336" y="670" width="185" height="1"/>
 			</line>
+			<textField>
+				<reportElement x="75" y="22" width="213" height="26"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
