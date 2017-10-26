@@ -67,6 +67,7 @@ public class Tecnico extends javax.swing.JFrame {
         ListarGarantiasProceso();
         ListarPrestamo();
         ListarListos();
+        colorEstado();
         //autoCompleteEntradas();
         //autoCompleteSalidas();
         //autoCompleteEnvios();
@@ -79,6 +80,7 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdProceso.setEnabled(false);
         txtIdPrestamo.setEnabled(false);
         txtIdListo.setEnabled(false);
+        txtEstado.setEnabled(false);
         //txtFechaEntrad.setEnabled(false);
     }
 
@@ -131,6 +133,11 @@ public class Tecnico extends javax.swing.JFrame {
         txtFechaGarantia.setText("");
         txtRmaGar.setText("");
         txtCaso.requestFocus();
+    }
+    
+    public void colorEstado(){
+        txtEstado.setDisabledTextColor(java.awt.Color.BLUE);
+        //txtSec.setText(gen.serie());
     }
 
     public void ListarEntradas() {
@@ -827,6 +834,8 @@ public class Tecnico extends javax.swing.JFrame {
         btnSalida1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
+        txtEstado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSalidas = new javax.swing.JTable();
@@ -936,6 +945,7 @@ public class Tecnico extends javax.swing.JFrame {
         cmbHistorial1 = new javax.swing.JComboBox();
         txtIdListo = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -1048,14 +1058,14 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 60, 345, 80);
         jPanel1.add(txtIdEntrada);
-        txtIdEntrada.setBounds(50, 370, 76, 30);
+        txtIdEntrada.setBounds(20, 380, 76, 30);
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("ID");
         jPanel1.add(jLabel22);
-        jLabel22.setBounds(20, 380, 24, 14);
+        jLabel22.setBounds(20, 360, 24, 20);
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1083,7 +1093,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida);
-        btnSalida.setBounds(180, 360, 40, 40);
+        btnSalida.setBounds(330, 370, 40, 40);
 
         btnSalida2.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1102,7 +1112,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida2);
-        btnSalida2.setBounds(220, 360, 40, 40);
+        btnSalida2.setBounds(370, 370, 40, 40);
 
         btnSalida1.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1121,7 +1131,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida1);
-        btnSalida1.setBounds(260, 360, 40, 40);
+        btnSalida1.setBounds(410, 370, 40, 40);
 
         jButton10.setBackground(new java.awt.Color(0, 153, 153));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1133,7 +1143,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(320, 370, 100, 40);
+        jButton10.setBounds(470, 380, 100, 40);
 
         jButton17.setBackground(new java.awt.Color(0, 153, 153));
         jButton17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1145,7 +1155,15 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton17);
-        jButton17.setBounds(430, 370, 100, 40);
+        jButton17.setBounds(580, 380, 100, 40);
+        jPanel1.add(txtEstado);
+        txtEstado.setBounds(120, 380, 130, 30);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ESTADO");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(120, 360, 50, 20);
 
         jTabbedPane1.addTab("ENTRADAS", jPanel1);
 
@@ -2325,6 +2343,15 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel11.add(jSeparator3);
         jSeparator3.setBounds(20, 46, 850, 10);
 
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton7);
+        jButton7.setBounds(340, 70, 30, 23);
+
         jTabbedPane3.addTab("LISTO", jPanel11);
 
         jTabbedPane2.addTab("GARANTIAS", jTabbedPane3);
@@ -2900,6 +2927,7 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbEntradas.getSelectedRow();
         txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
         areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 12)));
+        txtEstado.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 13)));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEntradasMouseClicked
@@ -3333,6 +3361,8 @@ public class Tecnico extends javax.swing.JFrame {
                 ListarEntradas_Garantias();
                 LimpiarGarantiasProceso();
                 ListarGarantiasProceso();
+                LimpiarListos();
+                ListarListos();
                 LimpiarEntradas();
                 ListarEntradas();
 
@@ -3844,6 +3874,14 @@ public class Tecnico extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_tbListoMouseClicked
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        LimpiarListos();
+        ListarListos();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3939,8 +3977,10 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -4004,6 +4044,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTable tbProceso;
     private javax.swing.JTable tbSalidas;
     private javax.swing.JTextField txtCaso;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFechaGarantia;
     private javax.swing.JTextField txtIdEntrada;
     private javax.swing.JTextField txtIdEnvio;
