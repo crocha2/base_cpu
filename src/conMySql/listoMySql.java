@@ -68,6 +68,48 @@ public class listoMySql {
         return listo;
     }
     
+    public ArrayList<Listos> ListEntregados() {
+    ArrayList<Listos> listo = new ArrayList();
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT e.id_entra, e.numero, e.fecha, e.elemento, e.marca, e.modelo, e.serie, e.empresa, e.nit, e.ciudad, e.garantia, e.observaciones, e.id_cli, g.estado, g.fecha_garantia, g.rma, g.numero_caso, g.serie_nueva, g.primera_serie \n"
+                    + "FROM entradas e \n"
+                    + "INNER JOIN garantias g \n"
+                    + "ON e.id_entra = g.id_entra \n"
+                    + "WHERE e.estado = 'ENTREGADO' \n"
+                    + "AND e.garantia = 'SI' ORDER BY e.fecha ASC");
+            while (rs.next()) {
+                Listos lis = new Listos();
+                lis.setId_entra(rs.getInt("id_entra"));
+                lis.setNumero(rs.getString("numero"));
+                lis.setFecha_entrada(rs.getString("fecha"));
+                lis.setFecha_garantia(rs.getString("fecha_garantia"));
+                lis.setElemento(rs.getString("elemento"));
+                lis.setMarca(rs.getString("marca"));
+                lis.setModelo(rs.getString("modelo"));
+                lis.setSerie_vieja(rs.getString("serie"));
+                lis.setCliente(rs.getString("empresa"));
+                lis.setNit(rs.getString("nit"));
+                lis.setCiudad(rs.getString("ciudad"));
+                lis.setGarantia(rs.getString("garantia"));
+                lis.setObservacion(rs.getString("observaciones"));
+                lis.setId_cli(rs.getInt("id_cli"));
+                lis.setEstado(rs.getString("estado"));
+                lis.setRma(rs.getString("rma"));
+                lis.setSerie_nueva(rs.getString("serie_nueva"));
+                lis.setNumero_caso(rs.getString("numero_caso"));
+                lis.setPrimera_serie(rs.getString("primera_serie"));
+                
+                listo.add(lis);
+            }
+            cn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en listado:\n" + ex.getMessage());
+        }
+        return listo;
+    }
+    
   
     public ArrayList<Entradas> ListEntradas_garantias() {
         ArrayList<Entradas> entrada = new ArrayList();

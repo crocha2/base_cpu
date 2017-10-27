@@ -67,6 +67,7 @@ public class Tecnico extends javax.swing.JFrame {
         ListarGarantiasProceso();
         ListarPrestamo();
         ListarListos();
+        ListarEntregados();
         colorEstado();
         //autoCompleteEntradas();
         //autoCompleteSalidas();
@@ -803,6 +804,23 @@ public class Tecnico extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
+    
+    public void ListarEntregados() {
+        listo = dbListo.ListEntregados();
+        DefaultTableModel tb = (DefaultTableModel) tbEntregados.getModel();
+        for (Listos en : listo) {
+            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(), 
+                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(),en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(), 
+                en.getNumero_caso(), en.getRma(),en.getPrimera_serie(),en.getGarantia(),en.getEstado(), en.getObservacion(),en.getId_cli()});
+        }
+    }
+
+    public void LimpiarEntregados() {
+        DefaultTableModel tb = (DefaultTableModel) tbEntregados.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     /**
      * This method is called from within the constructor to initialize the form.
@@ -933,6 +951,8 @@ public class Tecnico extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         btnBusca6 = new javax.swing.JButton();
+        jPanel21 = new javax.swing.JPanel();
+        btnBusca11 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -946,6 +966,25 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdListo = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jButton7 = new javax.swing.JButton();
+        jPanel20 = new javax.swing.JPanel();
+        btnBusca9 = new javax.swing.JButton();
+        jPanel22 = new javax.swing.JPanel();
+        btnBusca10 = new javax.swing.JButton();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        areaListo1 = new javax.swing.JTextArea();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tbEntregados = new javax.swing.JTable();
+        jPanel19 = new javax.swing.JPanel();
+        txtNitCliente5 = new javax.swing.JTextField();
+        btnBusca8 = new javax.swing.JButton();
+        cmbHistorial2 = new javax.swing.JComboBox();
+        txtIdListo1 = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton11 = new javax.swing.JButton();
+        jPanel23 = new javax.swing.JPanel();
+        btnBusca12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -1997,7 +2036,7 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID_KF", "FechaEntrada", "No.Rem", "Cliente", "Nit o Cedula", "SerieVieja", "PrimeraSerie", "FechaGarantia", "RMA", "No.Caso", "SerieNueva", "Estado"
+                "ID_FK", "FechaEntrada", "No.Rem", "Cliente", "Nit o Cedula", "SerieVieja", "PrimeraSerie", "FechaGarantia", "RMA", "No.Caso", "SerieNueva", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -2193,12 +2232,15 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton2);
-        jButton2.setBounds(115, 396, 102, 32);
+        jButton2.setBounds(140, 400, 102, 30);
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel16.setLayout(null);
 
         btnBusca6.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca6.setForeground(new java.awt.Color(0, 102, 0));
         btnBusca6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/listo_m.png"))); // NOI18N
         btnBusca6.setText("LISTO");
         btnBusca6.setBorder(null);
@@ -2213,25 +2255,38 @@ public class Tecnico extends javax.swing.JFrame {
                 btnBusca6ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBusca6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnBusca6))
-        );
+        jPanel16.add(btnBusca6);
+        btnBusca6.setBounds(0, 0, 70, 50);
 
         jPanel4.add(jPanel16);
-        jPanel16.setBounds(493, 172, 78, 56);
+        jPanel16.setBounds(490, 170, 70, 50);
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel21.setLayout(null);
+
+        btnBusca11.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca11.setForeground(new java.awt.Color(0, 102, 102));
+        btnBusca11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        btnBusca11.setText("ATRAS");
+        btnBusca11.setBorder(null);
+        btnBusca11.setBorderPainted(false);
+        btnBusca11.setContentAreaFilled(false);
+        btnBusca11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca11.setIconTextGap(-1);
+        btnBusca11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca11ActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnBusca11);
+        btnBusca11.setBounds(0, 0, 70, 50);
+
+        jPanel4.add(jPanel21);
+        jPanel21.setBounds(570, 170, 70, 50);
 
         jTabbedPane3.addTab("PROCESO", jPanel4);
 
@@ -2249,7 +2304,7 @@ public class Tecnico extends javax.swing.JFrame {
         jScrollPane9.setViewportView(areaListo);
 
         jPanel11.add(jScrollPane9);
-        jScrollPane9.setBounds(380, 70, 458, 80);
+        jScrollPane9.setBounds(408, 70, 430, 80);
 
         jScrollPane10.setAutoscrolls(true);
 
@@ -2259,7 +2314,7 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "No.Rem", "FechaEntrada", "FechaGarantia", "Cliente", "Nit o Cedula", "Ciudad", "Elemento", "Marca", "Modelo", "SerieVieja", "SerieNueva", "no.Caso", "RMA", "Serie 1", "Garantia", "Estado", "Observacion", "id_cli"
+                "ID_FK", "No.Rem", "FechaEntrada", "FechaGarantia", "Cliente", "Nit o Cedula", "Ciudad", "Elemento", "Marca", "Modelo", "SerieVieja", "SerieNueva", "no.Caso", "RMA", "Serie 1", "Garantia", "Estado", "Observacion", "id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -2282,7 +2337,7 @@ public class Tecnico extends javax.swing.JFrame {
         jScrollPane10.setViewportView(tbListo);
 
         jPanel11.add(jScrollPane10);
-        jScrollPane10.setBounds(10, 171, 876, 220);
+        jScrollPane10.setBounds(10, 221, 876, 170);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2326,18 +2381,18 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(cmbHistorial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNitCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBusca4))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel12);
-        jPanel12.setBounds(20, 70, 313, 81);
+        jPanel12.setBounds(30, 70, 313, 100);
         jPanel11.add(txtIdListo);
         txtIdListo.setBounds(40, 400, 80, 30);
         jPanel11.add(jSeparator3);
@@ -2350,9 +2405,209 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel11.add(jButton7);
-        jButton7.setBounds(340, 70, 30, 23);
+        jButton7.setBounds(360, 70, 30, 23);
+
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel20.setLayout(null);
+
+        btnBusca9.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca9.setForeground(new java.awt.Color(0, 102, 153));
+        btnBusca9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ok.png"))); // NOI18N
+        btnBusca9.setText("ENTREGADO");
+        btnBusca9.setBorder(null);
+        btnBusca9.setBorderPainted(false);
+        btnBusca9.setContentAreaFilled(false);
+        btnBusca9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca9.setIconTextGap(-1);
+        btnBusca9.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca9ActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnBusca9);
+        btnBusca9.setBounds(0, 0, 88, 50);
+
+        jPanel11.add(jPanel20);
+        jPanel20.setBounds(410, 160, 90, 50);
+
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel22.setLayout(null);
+
+        btnBusca10.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca10.setForeground(new java.awt.Color(0, 102, 153));
+        btnBusca10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        btnBusca10.setText("ATRAS");
+        btnBusca10.setBorder(null);
+        btnBusca10.setBorderPainted(false);
+        btnBusca10.setContentAreaFilled(false);
+        btnBusca10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca10.setIconTextGap(-1);
+        btnBusca10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca10ActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnBusca10);
+        btnBusca10.setBounds(0, 10, 88, 40);
+
+        jPanel11.add(jPanel22);
+        jPanel22.setBounds(510, 160, 90, 50);
 
         jTabbedPane3.addTab("LISTO", jPanel11);
+
+        jPanel18.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel18.setLayout(null);
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("EQUIPOS DESPACHADOS");
+        jPanel18.add(jLabel29);
+        jLabel29.setBounds(20, 10, 330, 29);
+
+        areaListo1.setColumns(20);
+        areaListo1.setRows(5);
+        jScrollPane13.setViewportView(areaListo1);
+
+        jPanel18.add(jScrollPane13);
+        jScrollPane13.setBounds(380, 70, 458, 70);
+
+        jScrollPane14.setAutoscrolls(true);
+
+        tbEntregados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbEntregados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID_FK", "No.Rem", "FechaEntrada", "FechaGarantia", "Cliente", "Nit o Cedula", "Ciudad", "Elemento", "Marca", "Modelo", "SerieVieja", "SerieNueva", "no.Caso", "RMA", "Serie 1", "Garantia", "Estado", "Observacion", "id_cli"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbEntregados.setToolTipText("");
+        tbEntregados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbEntregados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbEntregados.setGridColor(new java.awt.Color(0, 153, 153));
+        tbEntregados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEntregadosMouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tbEntregados);
+
+        jPanel18.add(jScrollPane14);
+        jScrollPane14.setBounds(10, 210, 876, 180);
+
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnBusca8.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca8.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
+        btnBusca8.setBorder(null);
+        btnBusca8.setBorderPainted(false);
+        btnBusca8.setContentAreaFilled(false);
+        btnBusca8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca8.setIconTextGap(-1);
+        btnBusca8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca8ActionPerformed(evt);
+            }
+        });
+
+        cmbHistorial2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RMA", "SERIE", "NIT", "CEDULA", "CLIENTE" }));
+        cmbHistorial2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbHistorial2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNitCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbHistorial2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBusca8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(cmbHistorial2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNitCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBusca8))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jPanel18.add(jPanel19);
+        jPanel19.setBounds(20, 70, 313, 100);
+        jPanel18.add(txtIdListo1);
+        txtIdListo1.setBounds(40, 400, 80, 30);
+        jPanel18.add(jSeparator4);
+        jSeparator4.setBounds(20, 46, 850, 10);
+
+        jButton11.setText("jButton7");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jButton11);
+        jButton11.setBounds(340, 70, 30, 23);
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel23.setLayout(null);
+
+        btnBusca12.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca12.setForeground(new java.awt.Color(0, 102, 153));
+        btnBusca12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        btnBusca12.setText("ATRAS");
+        btnBusca12.setBorder(null);
+        btnBusca12.setBorderPainted(false);
+        btnBusca12.setContentAreaFilled(false);
+        btnBusca12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca12.setIconTextGap(-1);
+        btnBusca12.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca12ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btnBusca12);
+        btnBusca12.setBounds(0, 0, 88, 50);
+
+        jPanel18.add(jPanel23);
+        jPanel23.setBounds(380, 150, 90, 50);
+
+        jTabbedPane3.addTab("ENTREGADOS", jPanel18);
 
         jTabbedPane2.addTab("GARANTIAS", jTabbedPane3);
 
@@ -3353,8 +3608,8 @@ public class Tecnico extends javax.swing.JFrame {
                 gar.setId_entra(id);
                 gar.setEstado("LISTO");
 
-                dbGarantia.ListoGarantia(gar);
-                dbGarantia.ListoEntrada(en);
+                dbGarantia.estadoGarantia(gar);
+                dbGarantia.estadoEntrada(en);
                 JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
 
                 LimpiarEntradas_Garantias();
@@ -3882,6 +4137,202 @@ public class Tecnico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void tbEntregadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntregadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbEntregadosMouseClicked
+
+    private void btnBusca8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca8ActionPerformed
+
+    private void cmbHistorial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorial2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbHistorial2ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void btnBusca9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca9ActionPerformed
+
+         Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
+
+                int seleccion = tbListo.getSelectedRow();
+
+                int idEn = Integer.parseInt("" + tbListo.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("ENTREGADO");
+
+                int idGar = Integer.parseInt("" + tbListo.getValueAt(seleccion, 0));
+                gar.setId_entra(idGar);
+                gar.setEstado("ENTREGADO");
+
+                dbGarantia.estadoGarantia(gar);
+                dbGarantia.estadoEntrada(en);
+                JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
+
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarListos();
+                ListarListos();
+                LimpiarEntregados();
+                ListarEntregados();
+                LimpiarEntradas();
+                ListarEntradas();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca9ActionPerformed
+
+    private void btnBusca11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca11ActionPerformed
+
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
+
+                int seleccion = tbProceso.getSelectedRow();
+
+                int idEn = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("REVISION");
+
+                int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("REVISION");
+
+                dbGarantia.estadoGarantia(gar);
+                dbGarantia.estadoEntrada(en);
+                dbGarantia.EliminarGarantiaBack(gar);
+                
+                JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
+
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarListos();
+                ListarListos();
+                LimpiarEntregados();
+                ListarEntregados();
+                LimpiarEntradas();
+                ListarEntradas();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
+        }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca11ActionPerformed
+
+    private void btnBusca10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca10ActionPerformed
+
+         Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
+
+                int seleccion = tbListo.getSelectedRow();
+
+                int idEn = Integer.parseInt("" + tbListo.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("PROCESO");
+
+                int id = Integer.parseInt("" + tbListo.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("PROCESO");
+
+                dbGarantia.estadoGarantia(gar);
+                dbGarantia.estadoEntrada(en);
+                
+                JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
+
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarListos();
+                ListarListos();
+                LimpiarEntregados();
+                ListarEntregados();
+                LimpiarEntradas();
+                ListarEntradas();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca10ActionPerformed
+
+    private void btnBusca12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca12ActionPerformed
+
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
+
+                int seleccion = tbEntregados.getSelectedRow();
+
+                int idEn = Integer.parseInt("" + tbEntregados.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("LISTO");
+
+                int id = Integer.parseInt("" + tbEntregados.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("LISTO");
+
+                dbGarantia.estadoGarantia(gar);
+                dbGarantia.estadoEntrada(en);
+                
+                JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
+
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarListos();
+                ListarListos();
+                LimpiarEntregados();
+                ListarEntregados();
+                LimpiarEntradas();
+                ListarEntradas();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3928,6 +4379,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextArea areaEntrada;
     private javax.swing.JTextArea areaEnvio;
     private javax.swing.JTextArea areaListo;
+    private javax.swing.JTextArea areaListo1;
     private javax.swing.JTextArea areaPrestamo;
     private javax.swing.JTextArea areaSalida;
     private javax.swing.JTextField autoEntra;
@@ -3938,12 +4390,17 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField autoSal;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
+    private javax.swing.JButton btnBusca10;
+    private javax.swing.JButton btnBusca11;
+    private javax.swing.JButton btnBusca12;
     private javax.swing.JButton btnBusca2;
     private javax.swing.JButton btnBusca3;
     private javax.swing.JButton btnBusca4;
     private javax.swing.JButton btnBusca5;
     private javax.swing.JButton btnBusca6;
     private javax.swing.JButton btnBusca7;
+    private javax.swing.JButton btnBusca8;
+    private javax.swing.JButton btnBusca9;
     private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnSalida1;
     private javax.swing.JButton btnSalida10;
@@ -3959,12 +4416,14 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbEntradas;
     private javax.swing.JComboBox cmbEnvios;
     private javax.swing.JComboBox cmbHistorial1;
+    private javax.swing.JComboBox cmbHistorial2;
     private javax.swing.JComboBox cmbPrestamo;
     private javax.swing.JComboBox cmbProceso;
     private javax.swing.JComboBox cmbRevision;
     private javax.swing.JComboBox cmbSalidas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
@@ -4000,6 +4459,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -4010,7 +4470,13 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4022,6 +4488,8 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4033,11 +4501,13 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable tbEntrada_garantia;
     private javax.swing.JTable tbEntradas;
+    private javax.swing.JTable tbEntregados;
     private javax.swing.JTable tbEnvios;
     private javax.swing.JTable tbListo;
     private javax.swing.JTable tbPrestamos;
@@ -4050,10 +4520,12 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdEnvio;
     private javax.swing.JTextField txtIdForanea;
     private javax.swing.JTextField txtIdListo;
+    private javax.swing.JTextField txtIdListo1;
     private javax.swing.JTextField txtIdPrestamo;
     private javax.swing.JTextField txtIdProceso;
     private javax.swing.JTextField txtIdSalida;
     private javax.swing.JTextField txtNitCliente4;
+    private javax.swing.JTextField txtNitCliente5;
     private javax.swing.JTextField txtNuevaSerie;
     private javax.swing.JTextField txtRmaGar;
     // End of variables declaration//GEN-END:variables

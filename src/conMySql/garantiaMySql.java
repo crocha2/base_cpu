@@ -193,7 +193,7 @@ public class garantiaMySql {
     }
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    public void ListoEntrada(Entradas entrada) {
+    public void estadoEntrada(Entradas entrada) {
         try {
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -209,7 +209,7 @@ public class garantiaMySql {
         }
     }
 
-    public void ListoGarantia(Garantias garantia) {
+    public void estadoGarantia(Garantias garantia) {
         try {
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -278,6 +278,20 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM entradas "
+                    + " WHERE id_entra=?");
+            pst.setInt(1, gar.getId_entra());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n" + ex.getMessage());
+        }
+    }
+    
+    public void EliminarGarantiaBack(Garantias gar) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM garantias "
                     + " WHERE id_entra=?");
             pst.setInt(1, gar.getId_entra());
             pst.executeUpdate();

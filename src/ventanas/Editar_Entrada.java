@@ -122,6 +122,9 @@ public class Editar_Entrada extends javax.swing.JFrame {
             if(posicion == 3){
                 txtEstado.setText("RECHAZADO");
             }
+            if(posicion == 4){
+                txtEstado.setText("ENTREGADO");
+            }
         } catch (Exception e) {
             System.out.println("error"+e);
         }
@@ -343,7 +346,7 @@ public void limpiar() {
         getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 40, 20));
         getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 120, -1));
 
-        cmbEditar_Entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO", "RECHAZADO" }));
+        cmbEditar_Entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO", "RECHAZADO", "ENTREGADO" }));
         cmbEditar_Entrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEditar_EntradaActionPerformed(evt);

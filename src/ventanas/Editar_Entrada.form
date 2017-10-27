@@ -429,11 +429,12 @@
     <Component class="javax.swing.JComboBox" name="cmbEditar_Entrada">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="5">
             <StringItem index="0" value="REVISION"/>
             <StringItem index="1" value="PROCESO"/>
             <StringItem index="2" value="LISTO"/>
             <StringItem index="3" value="RECHAZADO"/>
+            <StringItem index="4" value="ENTREGADO"/>
           </StringArray>
         </Property>
       </Properties>
